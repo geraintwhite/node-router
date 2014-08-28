@@ -3,7 +3,7 @@ Node Web Server Router
 
 A simple NodeJS path based router for hosting multiple miniservers on one port.
 
-`index.js` is the router and creates the web server. Routes are setup in here to load modules in node_modules depending on the path requested.
+`index.js` is the router and creates the web server. Routes are setup in here to load modules in the `modules` directory depending on the path requested.
 
 The wakeup and twitter modules use `data.json` files to store credentials needed.
 
