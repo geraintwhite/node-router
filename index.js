@@ -6,13 +6,13 @@ var router = function(req, res) {
     console.log('Request for', path);
     switch(path) {
         case '/twitter':
-            require('twitter')(req, res);
+            require('./modules/twitter')(req, res);
             break;
         case '/sysinfo':
-            require('sysinfo')(req, res);
+            require('./modules/sysinfo')(req, res);
             break;
         case '/wakeup':
-            require('wakeup')(req, res);
+            require('./modules/wakeup')(req, res);
             break;
         default:
             res.writeHead(404, {'Content-Type': 'text/plain'});
