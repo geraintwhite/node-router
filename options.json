@@ -1,4 +1,5 @@
 {
     "output": "/var/node/serve",
-    "node": true
+    "node": true,
+    "ignore": "modules/*/data.json"
 }
