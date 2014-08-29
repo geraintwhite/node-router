@@ -17,7 +17,7 @@ function convertMS(ms) {
 module.exports = function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
         
-    if (url.parse(req.url, true).query.reset == 'true') {
+    if (url.parse(req.url, true).query.reset !== undefined) {
         starttime = Date.now();
         console.log('Time reset');
         res.write('Time reset');
