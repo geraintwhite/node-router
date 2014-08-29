@@ -23,13 +23,11 @@ module.exports = function(req, res) {
         res.write('Time reset');
     } else {
         time = convertMS(Date.now() - starttime);
-        console.log(time);
         var out = '';
         for (var key in time) {
             out += time[key] + ' ' + key + ', ';
         }
         out = out.slice(0, -2);
-        console.log(out);
         res.write(out);
     }
     res.end();

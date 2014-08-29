@@ -8,7 +8,6 @@ var twitter = require('./modules/twitter'),
 
 var router = function(req, res) {
     path = url.parse(req.url).pathname;
-    console.log('Request for', path);
     switch (path) {
         case '/twitter':
             twitter(req, res);
