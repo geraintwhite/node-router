@@ -3,6 +3,7 @@
   "repository": "http://github.com/grit96/serve.git",
   "version": "0.0.1",
   "devDependencies": {
-    "twitter-js-client": "~0.0.5"
+    "twitter-js-client": "~0.0.5",
+    "async": "~0.9.0"
   }
 }

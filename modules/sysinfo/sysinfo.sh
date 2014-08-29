@@ -1,7 +1,7 @@
 #!/bin/bash
 
 uptime=`uptime|sed 's/.*up \([^,]*\),.*/\1/'`
-temp=`vcgencmd measure_temp | sed 's/[a-z]*=//g'`
+temp=`vcgencmd measure_temp|sed 's/[a-z]*=//g'`
 cpu=`top -bn1|awk 'NR>7{s+=$9}END{print s}'`
 memuse=`free -h|grep Mem|awk '{print$3}'`
 memtot=`free -h|grep Mem|awk '{print$2}'`

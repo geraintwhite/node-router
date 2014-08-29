@@ -1,21 +1,26 @@
 var http = require('http'),
     url = require('url');
 
+var twitter = require('./modules/twitter'),
+    sysinfo = require('./modules/sysinfo'),
+    wakeup = require('./modules/wakeup'),
+    tracker = require('./modules/tracker');
+
 var router = function(req, res) {
     path = url.parse(req.url).pathname;
     console.log('Request for', path);
     switch (path) {
         case '/twitter':
-            require('./modules/twitter')(req, res);
+            twitter(req, res);
             break;
         case '/sysinfo':
-            require('./modules/sysinfo')(req, res);
+            sysinfo(req, res);
             break;
         case '/wakeup':
-            require('./modules/wakeup')(req, res);
+            wakeup(req, res);
             break;
         case '/tracker':
-            require('./modules/tracker')(req, res);
+            tracker(req, res);
             break;
         default:
             res.writeHead(404, {'Content-Type': 'text/plain'});
