@@ -9,28 +9,26 @@ var cpu = [],
 var datacap = 7 * 24;
 
 var graphs = function() {
-    setTimeout(function() {
-        async.parallel({
-            cpu: function(cb) { exec("top -bn1|awk 'NR>7{s+=$9}END{print s}'", cb); },
-            mem: function(cb) { exec("free -h|grep Mem|awk '{print$3}'|sed 's/.$//'", cb); },
-            temp: function(cb) { exec("vcgencmd measure_temp|sed \"s/[a-z]*=\\(.*\\)'.*/\\1/g\"", cb); }
-        },
-        function(error, stdout, stderr) {
-            time = Date.now();
-            if (error) {
-                console.log(new Date(time), stderr);
-            } else {
-                cpu.push([time, parseInt(stdout.cpu[0].slice(0, -1))]);
-                mem.push([time, parseInt(stdout.mem[0].slice(0, -1))]);
-                temp.push([time, parseInt(stdout.temp[0].slice(0, -1))]);
+    async.parallel({
+        cpu: function(cb) { exec("top -bn1|awk 'NR>7{s+=$9}END{print s}'", cb); },
+        mem: function(cb) { exec("free -h|grep Mem|awk '{print$3}'|sed 's/.$//'", cb); },
+        temp: function(cb) { exec("vcgencmd measure_temp|sed \"s/[a-z]*=\\(.*\\)'.*/\\1/g\"", cb); }
+    },
+    function(error, stdout, stderr) {
+        time = Date.now();
+        if (error) {
+            console.log(new Date(time), stderr);
+        } else {
+            cpu.push([time, parseInt(stdout.cpu[0].slice(0, -1))]);
+            mem.push([time, parseInt(stdout.mem[0].slice(0, -1))]);
+            temp.push([time, parseInt(stdout.temp[0].slice(0, -1))]);
 
-                if (cpu.length > datacap) cpu.shift();
-                if (mem.length > datacap) mem.shift();
-                if (temp.length > datacap) temp.shift();
-            }
-        });
-        graphs();
-    }, 10 * 1000);
+            if (cpu.length > datacap) cpu.shift();
+            if (mem.length > datacap) mem.shift();
+            if (temp.length > datacap) temp.shift();
+        }
+    });
+    setTimeout(graphs, 10 * 1000);
 };
 graphs();
 
