@@ -6,6 +6,8 @@ var cpu = [],
     mem = [],
     temp = [];
 
+var datacap = 7 * 24;
+
 var graphs = function() {
     setTimeout(function() {
         async.parallel({
@@ -16,11 +18,15 @@ var graphs = function() {
         function(error, stdout, stderr) {
             time = Date.now();
             if (error) {
-                console.log(time, stderr);
+                console.log(new Date(time), stderr);
             } else {
                 cpu.push([time, parseInt(stdout.cpu[0].slice(0, -1))]);
                 mem.push([time, parseInt(stdout.mem[0].slice(0, -1))]);
                 temp.push([time, parseInt(stdout.temp[0].slice(0, -1))]);
+
+                if (cpu.length > datacap) cpu.shift();
+                if (mem.length > datacap) mem.shift();
+                if (temp.length > datacap) temp.shift();
             }
         });
         graphs();
