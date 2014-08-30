@@ -6,7 +6,8 @@ var cpu = [],
     mem = [],
     temp = [];
 
-var datacap = 7 * 24;
+var delay = 10 * 60 * 1000;
+var datacap = 7 * 24 * 6;
 
 var graphs = function() {
     async.parallel({
@@ -27,8 +28,8 @@ var graphs = function() {
             if (mem.length > datacap) mem.shift();
             if (temp.length > datacap) temp.shift();
         }
+        setTimeout(graphs, delay);
     });
-    setTimeout(graphs, 10 * 1000);
 };
 graphs();
 
