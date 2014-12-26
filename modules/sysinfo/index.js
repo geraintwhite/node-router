@@ -44,7 +44,7 @@ module.exports = function(req, res) {
         res.writeHead(200, {'Content-Type': 'application/json'});
         exec(__dirname + '/sysinfo.sh', function(error, stdout, stderr) {
             out = error ? stderr : stdout;
-            res.write(JSON.stringify(content: out));
+            res.write(JSON.stringify({content: out}));
             res.end();
         });
     } else {
