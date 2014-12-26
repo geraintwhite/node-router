@@ -40,6 +40,13 @@ module.exports = function(req, res) {
         res.writeHead(200, {'Content-Type': 'application/json'});
         res.write(JSON.stringify({ cpu: cpu, mem: mem, temp: temp }));
         res.end();
+    } else if (url.parse(req.url, true).query.pebble != undefined) {
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        exec(__dirname + '/sysinfo.sh', function(error, stdout, stderr) {
+            out = error ? stderr : stdout;
+            res.write(JSON.stringify(content: out));
+            res.end();
+        });
     } else {
         res.writeHead(200, {'Content-Type': 'text/plain'});
         exec(__dirname + '/sysinfo.sh', function(error, stdout, stderr) {
