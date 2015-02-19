@@ -12,7 +12,7 @@ var datacap = 7 * 24 * 6;
 var graphs = function() {
     async.parallel({
         cpu: function(cb) { exec("top -bn1|awk 'NR>7{s+=$9}END{print s}'", cb); },
-        mem: function(cb) { exec("free -h|grep '\-/+ buffers/cache'|awk '{print$3}'|sed 's/.$//'", cb); },
+        mem: function(cb) { exec("free -h|grep '\\-/+ buffers/cache'|awk '{print$3}'|sed 's/.$//'", cb); },
         temp: function(cb) { exec("vcgencmd measure_temp|sed \"s/[a-z]*=\\(.*\\)'.*/\\1/g\"", cb); }
     },
     function(error, stdout, stderr) {
