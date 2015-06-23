@@ -1,5 +1,5 @@
 {
-    "output": "/var/node/serve",
-    "node": true,
+    "copy_to": "/var/node/serve",
+    "start_cmd": ["npm update", "pm2 restart serve"],
     "ignore": ["modules/*/data.json"]
 }
