@@ -6,8 +6,8 @@ var cpu = [],
     mem = [],
     temp = [];
 
-var delay = 60 * 1000;
-var datacap = 7 * 24 * 60 * 60 * 1000 / delay;
+var delay = 10 * 60 * 1000;
+var datacap = 7 * 24 * 6;
 
 var graphs = function() {
     async.parallel({
