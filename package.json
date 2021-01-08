@@ -1,9 +1,25 @@
 {
   "name": "serve",
-  "repository": "http://github.com/grit96/serve.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/grit96/serve.git"
+  },
   "version": "0.0.1",
-  "devDependencies": {
+  "dependencies": {
     "twitter-js-client": "~0.0.5",
     "async": "~0.9.0"
-  }
+  },
+  "description": "Node Web Server Router ===",
+  "bugs": {
+    "url": "https://github.com/grit96/serve/issues"
+  },
+  "homepage": "https://github.com/grit96/serve#readme",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
