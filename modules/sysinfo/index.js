@@ -26,7 +26,7 @@ var graphs = function() {
     function(error, stdout, stderr) {
         time = Date.now();
         if (error) {
-            console.log(new Date(time), stderr);
+            console.log(new Date(time), error);
         } else {
             console.log(stdout, stderr);
 
